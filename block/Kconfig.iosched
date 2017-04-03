@@ -23,7 +23,6 @@ config IOSCHED_DEADLINE
 
 config IOSCHED_ROW
 	tristate "ROW I/O scheduler"
-        default y
 	---help---
 	  The ROW I/O scheduler gives priority to READ requests over the
 	  WRITE requests when dispatching, without starving WRITE requests.
@@ -31,6 +30,12 @@ config IOSCHED_ROW
 	  manner when the dispatch quantum for each queue is calculated
 	  according to queue priority.
 	  Most suitable for mobile devices.
+
+config IOSCHED_ZEN
+	 tristate "Zen scheduler"
+	 default y
+	 ---help---
+         The Zen I/O scheduler
 
 config IOSCHED_CFQ
 	tristate "CFQ I/O scheduler"
@@ -84,6 +89,7 @@ config DEFAULT_IOSCHED
 	default "row" if DEFAULT_ROW
 	default "cfq" if DEFAULT_CFQ
 	default "noop" if DEFAULT_NOOP
+        default "zen" if DEFAULT_ZEN
 
 endmenu
 
